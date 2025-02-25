@@ -1,0 +1,4 @@
+app:
+  name: LocalApp
+  database:
+    url: jdbc:local

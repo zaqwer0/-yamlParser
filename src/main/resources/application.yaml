@@ -1,0 +1,6 @@
+app:
+  name: MyApp
+  timeout: 5000
+  database:
+    url: ${DB_URL:jdbc:default}
+    username: ${DB_USER:guest}
