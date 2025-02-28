@@ -1,4 +1,8 @@
 app:
   name: LocalApp
+  timeout: 7800
   database:
+    hosts:
+      - "192.168.1.1"
+      - "192.168.1.2"
     url: jdbc:local

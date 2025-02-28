@@ -2,5 +2,5 @@ app:
   name: MyApp
   timeout: 5000
   database:
-    url: ${DB_URL:jdbc:default}
+    url: ${DB_еURL:jdbc}
     username: ${DB_USER:guest}

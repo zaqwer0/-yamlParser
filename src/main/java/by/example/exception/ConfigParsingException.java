@@ -1,6 +1,6 @@
-package by.example;
+package by.example.exception;
 
-class ConfigParsingException extends RuntimeException {
+public class ConfigParsingException extends RuntimeException {
     public ConfigParsingException(String message) {
         super(message);
     }

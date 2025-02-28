@@ -1,5 +1,6 @@
-package by.example;
+package by.example.example;
 
+import by.example.config.ConfigurationProperties;
 import lombok.Data;
 
 @ConfigurationProperties(prefix = "app")
@@ -7,7 +8,7 @@ import lombok.Data;
 public class AppConfig {
     private String name;
     private int timeout;
-    private DatabaseConfig database;
+    private DatabaseConfig database = new DatabaseConfig();
 }
 
 

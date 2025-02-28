@@ -1,4 +1,4 @@
-package by.example;
+package by.example.example;
 
 import lombok.Data;
 

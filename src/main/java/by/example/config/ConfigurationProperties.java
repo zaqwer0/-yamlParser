@@ -1,4 +1,4 @@
-package by.example;
+package by.example.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
