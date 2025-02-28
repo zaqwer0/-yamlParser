@@ -33,14 +33,14 @@ public class ConfigParser {
             if (baseProperties == null || baseProperties.isEmpty()) {
                 throw new ConfigParsingException("Default configuration file not found: " + defaultFile);
             }
-            flattenMap("", baseProperties, properties);
+            flatToMap("", baseProperties, properties);
 
             if (profile != null && !profile.trim().isEmpty()) {
                 String profileFile = defaultFile.replace(".yaml", "-" + profile + ".yaml");
                 log.info("Loading profile from " + profileFile);
                 Map<String, Object> profileProperties = loadYaml(profileFile);
                 if (profileProperties != null) {
-                    flattenMap("", profileProperties, properties);
+                    flatToMap("", profileProperties, properties);
                     log.info("Properties after loading profile file {}: {}" + profileFile + properties);
                 } else log.info("Profile file not found: " + profileFile + ", using default only");
             }
@@ -62,7 +62,7 @@ public class ConfigParser {
         }
     }
 
-    private void flattenMap(String prefix, Map<String, Object> source, Map<String, Object> target) {
+    private void flatToMap(String prefix, Map<String, Object> source, Map<String, Object> target) {
                 source
                 .entrySet()
                 .stream()
@@ -70,7 +70,7 @@ public class ConfigParser {
                     String key = prefix.isEmpty() ? entry.getKey() : prefix + "." + entry.getKey();
                     Object value = entry.getValue();
                     if (value instanceof Map) {
-                        flattenMap(key, (Map<String, Object>) value, target);
+                        flatToMap(key, (Map<String, Object>) value, target);
                     } else target.put(key, value);
                 });
     }
