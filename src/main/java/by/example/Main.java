@@ -1,26 +1,27 @@
 package by.example;
 
 
-import by.example.example.AppConfig;
 import by.example.config.ConfigParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import by.example.example.AppConfig;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class Main {
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final String D_CONFIG_FILE ="application.yaml";
+    private static final String PROFILE = "local";
+
     public static void main(String[] args) {
-
-        ConfigParser parser = new ConfigParser("application.yaml");
+        ConfigParser parser = new ConfigParser(D_CONFIG_FILE);
         AppConfig config = parser.bind(AppConfig.class);
-        logger.info("Default config: {}", config);
+        log.info("Default config: {}", config);
 
-        ConfigParser parserWithProfile = new ConfigParser("application.yaml", "local");
+        ConfigParser parserWithProfile = new ConfigParser(D_CONFIG_FILE, PROFILE);
         AppConfig localConfig = parserWithProfile.bind(AppConfig.class);
-        logger.info("Local config: {}", localConfig);
+        log.info("Local config: {}", localConfig);
 
         System.setProperty("DB_URL", "jdbc:env");
-        ConfigParser envParser = new ConfigParser("application.yaml");
+        ConfigParser envParser = new ConfigParser(D_CONFIG_FILE);
         AppConfig envConfig = envParser.bind(AppConfig.class);
-        logger.info("With env: {}" ,envConfig);
+        log.info("With env: {}", envConfig);
     }
 }
